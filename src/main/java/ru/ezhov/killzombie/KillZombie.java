@@ -12,5 +12,4 @@ public class KillZombie {
         BattleField battleField = new BattleField();
         battleField.setVisible(true);
     }
-
 }
