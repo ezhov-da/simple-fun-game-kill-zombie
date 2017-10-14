@@ -1,0 +1,6 @@
+.idea
+simple-fun-game-kill-zombie.iml
+target
+*.log
+*.lck
+/*.iml
