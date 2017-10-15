@@ -30,25 +30,15 @@ public class BattleField extends JFrame {
 
     private static final Logger LOG = Logger.getLogger(BattleField.class.getName());
 
-    /**
-     * размеры игрового поля строк
-     */
+    /** размеры игрового поля строк */
     private final static int COUNT_ROW = 5;
-    /**
-     * размеры игрового поля столбцов
-     */
+    /** размеры игрового поля столбцов */
     private final static int COUNT_COLUMN = 5;
-    /**
-     * кол-во зомби на игровом поле
-     */
+    /** кол-во зомби на игровом поле */
     private final static int COUNT_ZOMBIE = COUNT_ROW * COUNT_COLUMN;
-    /**
-     * панель с полем зомби
-     */
+    /** панель с полем зомби */
     private final BattlePanel battlePanel = new BattlePanel();
-    /**
-     * панель статистики
-     */
+    /** панель статистики */
     private final StatisticPanel statisticPanel = new StatisticPanel();
 
     public BattleField() {
@@ -68,16 +58,12 @@ public class BattleField extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    /**
-     * панель с зомби
-     */
+    /** панель с зомби */
     private class BattlePanel extends JPanel {
 
-        /**
-         * курсор в виде ножа для зомби
-         */
+        /** курсор в виде ножа для зомби */
         private final Image IMAGE_CURSOR_KNIFE
-                = new ImageIcon(BattleField.class.getResource("/knife.png")).getImage();
+                = new ImageIcon(BattleField.class.getResource("src/knife.png")).getImage();
         private final List<Zombie> zombies = new ArrayList<Zombie>(COUNT_ZOMBIE);
 
         public BattlePanel() {
@@ -86,9 +72,7 @@ public class BattleField extends JFrame {
             setCursor(Toolkit.getDefaultToolkit().createCustomCursor(IMAGE_CURSOR_KNIFE, new Point(0, 0), "knife_kutsor"));
         }
 
-        /**
-         * инициализируем поле
-         */
+        /** инициализируем поле */
         private void init() {
             setLayout(new GridLayout(COUNT_ROW, COUNT_COLUMN));
         }
@@ -99,9 +83,7 @@ public class BattleField extends JFrame {
             threadZombie.start();
         }
 
-        /**
-         * создаем поле
-         */
+        /** создаем поле */
         public void createZombie() {
             for (int i = 0; i < COUNT_ZOMBIE; i++) {
                 Zombie zombie = new Zombie();
@@ -110,60 +92,36 @@ public class BattleField extends JFrame {
             }
         }
 
-        /**
-         * получаем список зомби
-         */
+        /** получаем список зомби */
         public List<Zombie> getZombies() {
             return zombies;
         }
 
     }
 
-    /**
-     * панель статистики
-     */
+    /** панель статистики */
     private class StatisticPanel extends JPanel {
 
         private final Font FONT = new Font("consolas", Font.PLAIN, 40);
-        /**
-         * фон панели статистики
-         */
-        private final Image IMAGE_BACKGROUND = new ImageIcon(BattleField.class.getResource("/blood_backround.png")).getImage();
-        /**
-         * надпись времени
-         */
+        /** фон панели статистики */
+        private final Image IMAGE_BACKGROUND = new ImageIcon(BattleField.class.getResource("src/blood_backround.png")).getImage();
+        /** надпись времени */
         private final JLabel labelStringTime = new JLabel("Осталось время:");
-        /**
-         * надпись жизни
-         */
+        /** надпись жизни */
         private final JLabel labelStringLife = new JLabel("Осталось жизни");
-        /**
-         * надпись сколько убито зомби
-         */
+        /** надпись сколько убито зомби */
         private final JLabel labelStringZombie = new JLabel("Убито зомби:");
-        /**
-         * надпись сколько взорвано бомб
-         */
+        /** надпись сколько взорвано бомб */
         private final JLabel labelStringExplosion = new JLabel("Взорвано бомб:");
-        /**
-         * надпись времени результат
-         */
+        /** надпись времени результат */
         private final JLabel labelTime = new JLabel("time");
-        /**
-         * надпись жизни результат
-         */
+        /** надпись жизни результат */
         private final JLabel labelLife = new JLabel("life");
-        /**
-         * надпись сколько убито зомби результат
-         */
+        /** надпись сколько убито зомби результат */
         private final JLabel labelZombie = new JLabel("zombie");
-        /**
-         * надпись сколько взорвано бомб результат
-         */
+        /** надпись сколько взорвано бомб результат */
         private final JLabel labelExplosion = new JLabel("exploison");
-        /**
-         * отступы от краев
-         */
+        /** отступы от краев */
         private final Insets insets = new Insets(5, 5, 5, 5);
 
         public StatisticPanel() {
@@ -241,43 +199,27 @@ public class BattleField extends JFrame {
 
     private class LaunchZombies implements Runnable {
 
-        /**
-         * начальное кол-во жизней
-         */
+        /** начальное кол-во жизней */
         private int life = 100;
-        /**
-         * кол-во убитых зомби
-         */
+        /** кол-во убитых зомби */
         private int zombieCount = 0;
-        /**
-         * кол-во взорванных бомб
-         */
+        /** кол-во взорванных бомб */
         private int exploisonCount = 0;
 
-        /**
-         * список зомби
-         */
+        /** список зомби */
         private List<Zombie> zombies;
-        /**
-         * рандом используемый для отображения зомби
-         */
+        /** рандом используемый для отображения зомби */
         private final Random random = new Random();
-        /**
-         * размер списка зомби
-         */
+        /** размер списка зомби */
         private int COUNT_ZOMBIE;
-        /**
-         * текцщий зомби
-         */
+        /** текцщий зомби */
         private Zombie zombie;
         /**
          * текущий номер зомби его мы храним,
          * чтоб не повторять одного и тогоже зомби
          */
         private int nowZombie;
-        /**
-         * скорость перемещения
-         */
+        /** скорость перемещения */
         private final static int SPEED = 800;
 
         @Override
@@ -290,29 +232,24 @@ public class BattleField extends JFrame {
             /** получаем список зомби */
             zombies = battlePanel.getZombies();
             COUNT_ZOMBIE = zombies.size() - 1;
+            PlayMusic.play();
             launch();
 
         }
 
-        /**
-         * устанавливаем иконку зомби
-         */
+        /** устанавливаем иконку зомби */
         private void setZombie() {
             zombie.setZombie();
             zombie.setActive(true);
         }
 
-        /**
-         * устанавливаем иконку значка радиации
-         */
+        /** устанавливаем иконку значка радиации */
         private void setLabel() {
             zombie.setLabel();
             zombie.setActive(false);
         }
 
-        /**
-         * устанавливаем зомби
-         */
+        /** устанавливаем зомби */
         private void setNextZombie() {
             /*если текущий зомби не пустой, тогда ставим значок*/
             if (zombie != null) {
@@ -328,9 +265,7 @@ public class BattleField extends JFrame {
 
         }
 
-        /**
-         * запускаем беготню
-         */
+        /** запускаем беготню */
         private void launch() {
             while (true) {
                 /*запускаем зомби*/
@@ -345,9 +280,7 @@ public class BattleField extends JFrame {
             }
         }
 
-        /**
-         * обновляем результаты убийства зомби
-         */
+        /** обновляем результаты убийства зомби */
         private void setResult() {
             for (Zombie z : zombies) {
                 life = z.getCountLife(life);

@@ -1,6 +1,7 @@
 package ru.ezhov.killzombie;
 
 /**
+ *
  * @author rrndeonisiusezh
  */
 public class KillZombie {
@@ -12,4 +13,5 @@ public class KillZombie {
         BattleField battleField = new BattleField();
         battleField.setVisible(true);
     }
+    
 }
