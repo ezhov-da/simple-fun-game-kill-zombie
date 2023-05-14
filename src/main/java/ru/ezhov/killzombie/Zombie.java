@@ -1,44 +1,61 @@
 package ru.ezhov.killzombie;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import sun.misc.VM;
 
 /**
- *
  * @author rrndeonisiusezh
  */
 public final class Zombie extends JButton implements ActionListener {
 
-    private static final Logger LOG = Logger.getLogger(Zombie.class.getName());
-
-    /** картинка зомби */
-    private final static Icon ICON_ZOMBIE = new ImageIcon(Zombie.class.getResource("src/zombie.png"));
-    /** картинка значка */
-    private final static Icon ICON_LABEL = new ImageIcon(Zombie.class.getResource("src/danger.png"));
-    /** картинка крови */
-    private final static Icon ICON_BLOOD = new ImageIcon(Zombie.class.getResource("src/dead_zombie.png"));
-    /** картинка взрыва */
-    private final static Icon ICON_EXPLOISON = new ImageIcon(Zombie.class.getResource("src/explosion.png"));
-    /** сколько жизней забирает зомби */
+    /**
+     * сколько жизней забирает зомби
+     */
     public static final int LIFE_ZOMBIE_GET = 5;
-    /** сколько жизней забирает взрыв */
+    /**
+     * сколько жизней забирает взрыв
+     */
     public static final int LIFE_EXPLOISON_GET = 10;
-    /** отображен ли в данный момент зомби */
+    private static final Logger LOG = Logger.getLogger(Zombie.class.getName());
+    /**
+     * картинка зомби
+     */
+    private final static Icon ICON_ZOMBIE = new ImageIcon(Zombie.class.getResource("/zombie.png"));
+    /**
+     * картинка значка
+     */
+    private final static Icon ICON_LABEL = new ImageIcon(Zombie.class.getResource("/danger.png"));
+    /**
+     * картинка крови
+     */
+    private final static Icon ICON_BLOOD = new ImageIcon(Zombie.class.getResource("/dead_zombie.png"));
+    /**
+     * картинка взрыва
+     */
+    private final static Icon ICON_EXPLOISON = new ImageIcon(Zombie.class.getResource("/explosion.png"));
+    /**
+     * отображен ли в данный момент зомби
+     */
     private boolean active;
-    /** переменная, которая говорит о том, сколько жизей забрал этот зомби */
+    /**
+     * переменная, которая говорит о том, сколько жизей забрал этот зомби
+     */
     private int lifeMinus;
-    /** говорит о том, что выбран зомби */
+    /**
+     * говорит о том, что выбран зомби
+     */
     private int zombie;
-    /** говорит о том, что взрыв */
+    /**
+     * говорит о том, что взрыв
+     */
     private int exploison;
 
-    /** по умолчанию отображается значок */
+    /**
+     * по умолчанию отображается значок
+     */
     public Zombie() {
         setLabel();
         setOpaque(true);
@@ -46,22 +63,30 @@ public final class Zombie extends JButton implements ActionListener {
         addActionListener(this);
     }
 
-    /** устанавливаем значок зомби */
+    /**
+     * устанавливаем значок зомби
+     */
     public void setZombie() {
         setIcon(ICON_ZOMBIE);
     }
 
-    /** устанавливаем значок опасности */
+    /**
+     * устанавливаем значок опасности
+     */
     public void setLabel() {
         setIcon(ICON_LABEL);
     }
 
-    /** устанавливаем значок крови */
+    /**
+     * устанавливаем значок крови
+     */
     public void setBlood() {
         setIcon(ICON_BLOOD);
     }
 
-    /** устанавливаем значок взрыва */
+    /**
+     * устанавливаем значок взрыва
+     */
     public void setExplosion() {
         setIcon(ICON_EXPLOISON);
     }
@@ -129,7 +154,9 @@ public final class Zombie extends JButton implements ActionListener {
         return returnExploison;
     }
 
-    /** класс реализует смену иконки взрыв на значок */
+    /**
+     * класс реализует смену иконки взрыв на значок
+     */
     private class Explosion implements Runnable {
 
         @Override
